@@ -10,7 +10,7 @@ import Quick
 import Nimble
 @testable import UnitTestRealm
 
-class UserSpec: QuickSpec {
+class UserSpec: BaseSpec {
   override func spec() {
     super.spec()
 
