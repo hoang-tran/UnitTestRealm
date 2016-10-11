@@ -62,6 +62,25 @@ class PersonSpec: BaseSpec {
           expect(personFromDatabase?.dogs[1].name) == "dog 1"
         }
       }
+
+      describe("inverse relationship") {
+        it("saves the object and its relationship to database correctly") {
+          let person0 = Person(name: "person 0", age: personAge)
+          let person1 = Person(name: "person 1", age: personAge)
+          let dog = Dog(value: ["name": dogName])
+          person0.dogs.append(dog)
+          person1.dogs.append(dog)
+          let realm = try! Realm()
+          try! realm.write {
+            realm.add(person0)
+            realm.add(person1)
+          }
+          let dogFromDatabase = realm.objects(Dog.self).first
+          expect(dogFromDatabase?.owners.count) == 2
+          expect(dogFromDatabase?.owners[0].name) == person0.name
+          expect(dogFromDatabase?.owners[1].name) == person1.name
+        }
+      }
     }
   }
 }

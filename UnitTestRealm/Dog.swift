@@ -12,4 +12,5 @@ import RealmSwift
 class Dog: Object {
   dynamic var name = ""
   dynamic var owner: Person?
+  let owners = LinkingObjects(fromType: Person.self, property: "dogs")
 }
