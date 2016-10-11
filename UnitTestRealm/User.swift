@@ -12,6 +12,7 @@ import RealmSwift
 class Person: Object {
   dynamic var name = ""
   dynamic var age = 0
+  let dogs = List<Dog>()
 
   convenience init(name: String, age: Int) {
     self.init()
