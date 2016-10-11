@@ -26,3 +26,12 @@ class Person: Object {
     return ["address", "height"]
   }
 }
+
+extension Person {
+  func save() {
+    let realm = try! Realm()
+    try! realm.write {
+      realm.add(self)
+    }
+  }
+}
