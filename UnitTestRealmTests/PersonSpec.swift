@@ -116,20 +116,32 @@ class PersonSpec: BaseSpec {
       }
 
       describe("Read") {
+        beforeEach {
+          let realm = try! Realm()
+          try! realm.write {
+            for i in 0...2 {
+              let person = Person(name: "person \(i)", age: 17 + i)
+              realm.add(person)
+            }
+          }
+        }
+        
         describe("retrieving all objects") {
           it("returns all persons") {
-            let realm = try! Realm()
-            try! realm.write {
-              for i in 0...2 {
-                let person = Person(name: "person \(i)", age: personAge)
-                realm.add(person)
-              }
-            }
             let persons = Person.all()
             expect(persons.count) == 3
             expect(persons[0].name) == "person 0"
             expect(persons[1].name) == "person 1"
             expect(persons[2].name) == "person 2"
+          }
+        }
+
+        describe("filtering") {
+          it("returns filtered results") {
+            let adults = Person.adults()
+            expect(adults.count) == 2
+            expect(adults[0].age) == 18
+            expect(adults[1].age) == 19
           }
         }
       }

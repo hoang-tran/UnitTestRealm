@@ -39,4 +39,9 @@ extension Person {
     let realm = try! Realm()
     return realm.objects(Person.self)
   }
+
+  class func adults() -> Results<Person> {
+    let realm = try! Realm()
+    return realm.objects(Person.self).filter("age >= 18")
+  }
 }
