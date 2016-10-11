@@ -82,5 +82,23 @@ class PersonSpec: BaseSpec {
         }
       }
     }
+
+    describe("ignored properties") {
+      let address = "address here"
+      let height = 1.75
+
+      it("doesn't save those properties to database") {
+        let person = Person(name: personName, age: personAge)
+        person.address = address
+        person.height = height
+        let realm = try! Realm()
+        try! realm.write {
+          realm.add(person)
+        }
+        let personFromDatabase = realm.objects(Person.self).first
+        expect(personFromDatabase?.address) != address
+        expect(personFromDatabase?.height) != height
+      }
+    }
   }
 }
