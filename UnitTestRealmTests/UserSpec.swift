@@ -14,9 +14,14 @@ class UserSpec: BaseSpec {
   override func spec() {
     super.spec()
 
-    describe("first test") {
-      it("should pass") {
-        expect(1 + 1) == 2
+    describe("initialize with name and age") {
+      let userName = "name A"
+      let userAge = 18
+
+      it("initializes correctly") {
+        let user = User(name: userName, age: userAge)
+        expect(user.name) == userName
+        expect(user.age) == userAge
       }
     }
   }

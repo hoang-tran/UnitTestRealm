@@ -16,6 +16,7 @@
 		F3F7227A1DAC701300A756BB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3F722781DAC701300A756BB /* LaunchScreen.storyboard */; };
 		F3F722911DAC719000A756BB /* UserSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F722901DAC719000A756BB /* UserSpec.swift */; };
 		F3F722931DAC738100A756BB /* BaseSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F722921DAC738100A756BB /* BaseSpec.swift */; };
+		F3F722951DAC75B500A756BB /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F722941DAC75B500A756BB /* User.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +46,7 @@
 		F3F722861DAC701300A756BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F3F722901DAC719000A756BB /* UserSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSpec.swift; sourceTree = "<group>"; };
 		F3F722921DAC738100A756BB /* BaseSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseSpec.swift; sourceTree = "<group>"; };
+		F3F722941DAC75B500A756BB /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		FD813162D9E53B679CF84443 /* Pods_UnitTestRealm.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UnitTestRealm.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -114,6 +116,7 @@
 				F3F7228F1DAC713800A756BB /* Support */,
 				F3F7226F1DAC701300A756BB /* AppDelegate.swift */,
 				F3F722711DAC701300A756BB /* ViewController.swift */,
+				F3F722941DAC75B500A756BB /* User.swift */,
 			);
 			path = UnitTestRealm;
 			sourceTree = "<group>";
@@ -341,6 +344,7 @@
 			files = (
 				F3F722721DAC701300A756BB /* ViewController.swift in Sources */,
 				F3F722701DAC701300A756BB /* AppDelegate.swift in Sources */,
+				F3F722951DAC75B500A756BB /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
