@@ -114,6 +114,25 @@ class PersonSpec: BaseSpec {
           expect(personFromDatabase?.age) == person.age
         }
       }
+
+      describe("Read") {
+        describe("retrieving all objects") {
+          it("returns all persons") {
+            let realm = try! Realm()
+            try! realm.write {
+              for i in 0...2 {
+                let person = Person(name: "person \(i)", age: personAge)
+                realm.add(person)
+              }
+            }
+            let persons = Person.all()
+            expect(persons.count) == 3
+            expect(persons[0].name) == "person 0"
+            expect(persons[1].name) == "person 1"
+            expect(persons[2].name) == "person 2"
+          }
+        }
+      }
     }
   }
 }

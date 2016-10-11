@@ -34,4 +34,9 @@ extension Person {
       realm.add(self)
     }
   }
+
+  class func all() -> Results<Person> {
+    let realm = try! Realm()
+    return realm.objects(Person.self)
+  }
 }
