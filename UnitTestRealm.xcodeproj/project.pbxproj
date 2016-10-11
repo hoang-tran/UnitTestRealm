@@ -14,7 +14,7 @@
 		F3F722751DAC701300A756BB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3F722731DAC701300A756BB /* Main.storyboard */; };
 		F3F722771DAC701300A756BB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3F722761DAC701300A756BB /* Assets.xcassets */; };
 		F3F7227A1DAC701300A756BB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3F722781DAC701300A756BB /* LaunchScreen.storyboard */; };
-		F3F722911DAC719000A756BB /* UserSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F722901DAC719000A756BB /* UserSpec.swift */; };
+		F3F722911DAC719000A756BB /* PersonSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F722901DAC719000A756BB /* PersonSpec.swift */; };
 		F3F722931DAC738100A756BB /* BaseSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F722921DAC738100A756BB /* BaseSpec.swift */; };
 		F3F722951DAC75B500A756BB /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F722941DAC75B500A756BB /* User.swift */; };
 /* End PBXBuildFile section */
@@ -44,7 +44,7 @@
 		F3F7227B1DAC701300A756BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F3F722801DAC701300A756BB /* UnitTestRealmTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTestRealmTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3F722861DAC701300A756BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F3F722901DAC719000A756BB /* UserSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSpec.swift; sourceTree = "<group>"; };
+		F3F722901DAC719000A756BB /* PersonSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonSpec.swift; sourceTree = "<group>"; };
 		F3F722921DAC738100A756BB /* BaseSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseSpec.swift; sourceTree = "<group>"; };
 		F3F722941DAC75B500A756BB /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		FD813162D9E53B679CF84443 /* Pods_UnitTestRealm.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UnitTestRealm.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -125,7 +125,7 @@
 			isa = PBXGroup;
 			children = (
 				F3F722861DAC701300A756BB /* Info.plist */,
-				F3F722901DAC719000A756BB /* UserSpec.swift */,
+				F3F722901DAC719000A756BB /* PersonSpec.swift */,
 				F3F722921DAC738100A756BB /* BaseSpec.swift */,
 			);
 			path = UnitTestRealmTests;
@@ -352,7 +352,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F3F722911DAC719000A756BB /* UserSpec.swift in Sources */,
+				F3F722911DAC719000A756BB /* PersonSpec.swift in Sources */,
 				F3F722931DAC738100A756BB /* BaseSpec.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -9,7 +9,7 @@
 import Realm
 import RealmSwift
 
-class User: Object {
+class Person: Object {
   dynamic var name = ""
   dynamic var age = 0
 

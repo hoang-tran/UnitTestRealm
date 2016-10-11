@@ -10,18 +10,18 @@ import Quick
 import Nimble
 @testable import UnitTestRealm
 
-class UserSpec: BaseSpec {
+class PersonSpec: BaseSpec {
   override func spec() {
     super.spec()
 
     describe("initialize with name and age") {
-      let userName = "name A"
-      let userAge = 18
+      let personName = "name A"
+      let personAge = 18
 
       it("initializes correctly") {
-        let user = User(name: userName, age: userAge)
-        expect(user.name) == userName
-        expect(user.age) == userAge
+        let person = Person(name: personName, age: personAge)
+        expect(person.name) == personName
+        expect(person.age) == personAge
       }
     }
   }
