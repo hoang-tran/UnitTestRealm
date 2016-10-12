@@ -144,6 +144,26 @@ class PersonSpec: BaseSpec {
             expect(adults[1].age) == 19
           }
         }
+
+        describe("sorting") {
+          it("returns sorted results") {
+            let results = Person.oldestFirst()
+            expect(results.count) == 3
+            expect(results[0].age) == 19
+            expect(results[1].age) == 18
+            expect(results[2].age) == 17
+          }
+        }
+
+        describe("limiting results") {
+          it("returns limited results") {
+            let results = Person.first(2)
+            expect(results.count) == 2
+            expect(results[0].name) == "person 0"
+            expect(results[1].name) == "person 1"
+          }
+        }
+      }
       }
     }
   }

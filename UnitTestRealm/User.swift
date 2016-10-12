@@ -44,4 +44,19 @@ extension Person {
     let realm = try! Realm()
     return realm.objects(Person.self).filter("age >= 18")
   }
+
+  class func oldestFirst() -> Results<Person> {
+    let realm = try! Realm()
+    return realm.objects(Person.self).sorted("age", ascending: false)
+  }
+
+  class func first(number: UInt) -> [Person] {
+    let realm = try! Realm()
+    let results = realm.objects(Person.self)
+    var limitedResults = [Person]()
+    for i in 0..<min(Int(number), results.count) {
+      limitedResults.append(results[i])
+    }
+    return limitedResults
+  }
 }
