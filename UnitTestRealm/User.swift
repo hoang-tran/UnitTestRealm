@@ -80,4 +80,11 @@ extension Person {
       realm.add(person, update: true)
     }
   }
+
+  func delete() {
+    let realm = try! Realm()
+    try! realm.write {
+      realm.delete(self)
+    }
+  }
 }

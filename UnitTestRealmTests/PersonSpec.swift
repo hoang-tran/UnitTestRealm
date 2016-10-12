@@ -118,13 +118,7 @@ class PersonSpec: BaseSpec {
 
       describe("Read") {
         beforeEach {
-          let realm = try! Realm()
-          try! realm.write {
-            for i in 0...2 {
-              let person = Person(id: i, name: "person \(i)", age: 17 + i)
-              realm.add(person)
-            }
-          }
+          self.createPersons(3)
         }
         
         describe("retrieving all objects") {
@@ -194,6 +188,31 @@ class PersonSpec: BaseSpec {
             expect(personFromDatabase?.age) == newAge
           }
         }
+      }
+
+      describe("Delete") {
+        it("deletes records from database") {
+          self.createPersons(3)
+          let realm = try! Realm()
+          let secondPerson = realm.objectForPrimaryKey(Person.self, key: 1)
+          secondPerson?.delete()
+          let persons = Person.all()
+          expect(persons.count) == 2
+          expect(persons[0].id) == 0
+          expect(persons[1].id) == 2
+        }
+      }
+    }
+  }
+}
+
+extension PersonSpec {
+  func createPersons(number: Int) {
+    let realm = try! Realm()
+    try! realm.write {
+      for i in 0..<number {
+        let person = Person(id: i, name: "person \(i)", age: 17 + i)
+        realm.add(person)
       }
     }
   }
