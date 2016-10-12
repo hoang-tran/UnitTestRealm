@@ -14,16 +14,22 @@ class Person: Object {
   dynamic var age = 0
   dynamic var address = ""
   dynamic var height = 0.0
+  dynamic var id = 0
   let dogs = List<Dog>()
 
-  convenience init(name: String, age: Int) {
+  convenience init(id: Int, name: String, age: Int) {
     self.init()
+    self.id = id
     self.name = name
     self.age = age
   }
 
   override static func ignoredProperties() -> [String] {
     return ["address", "height"]
+  }
+
+  override static func primaryKey() -> String? {
+    return "id"
   }
 }
 
@@ -58,5 +64,20 @@ extension Person {
       limitedResults.append(results[i])
     }
     return limitedResults
+  }
+
+  func updateName(name: String, age: Int) {
+    let realm = try! Realm()
+    try! realm.write {
+      self.name = name
+      self.age = age
+    }
+  }
+
+  func updateFrom(person: Person) {
+    let realm = try! Realm()
+    try! realm.write {
+      realm.add(person, update: true)
+    }
   }
 }

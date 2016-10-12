@@ -14,14 +14,15 @@ import RealmSwift
 class PersonSpec: BaseSpec {
   override func spec() {
     super.spec()
-    
+
+    let personID = 0
     let personName = "name A"
     let personAge = 18
     
     describe("models") {
       describe("initialize with name and age") {
         it("initializes correctly") {
-          let person = Person(name: personName, age: personAge)
+          let person = Person(id: personID, name: personName, age: personAge)
           expect(person.name) == personName
           expect(person.age) == personAge
         }
@@ -32,7 +33,7 @@ class PersonSpec: BaseSpec {
         
         describe("to-one relationship") {
           it("saves the object and its relationship to database correctly") {
-            let person = Person(name: personName, age: personAge)
+            let person = Person(id: personID, name: personName, age: personAge)
             let dog = Dog(value: ["name": dogName])
             dog.owner = person
             let realm = try! Realm()
@@ -48,7 +49,7 @@ class PersonSpec: BaseSpec {
         
         describe("to-many relationship") {
           it("saves the object and its relationship to database correctly") {
-            let person = Person(name: personName, age: personAge)
+            let person = Person(id: personID, name: personName, age: personAge)
             let dog0 = Dog(value: ["name": "dog 0"])
             let dog1 = Dog(value: ["name": "dog 1"])
             person.dogs.append(dog0)
@@ -66,8 +67,8 @@ class PersonSpec: BaseSpec {
         
         describe("inverse relationship") {
           it("saves the object and its relationship to database correctly") {
-            let person0 = Person(name: "person 0", age: personAge)
-            let person1 = Person(name: "person 1", age: personAge)
+            let person0 = Person(id: 0, name: "person 0", age: personAge)
+            let person1 = Person(id: 1, name: "person 1", age: personAge)
             let dog = Dog(value: ["name": dogName])
             person0.dogs.append(dog)
             person1.dogs.append(dog)
@@ -89,7 +90,7 @@ class PersonSpec: BaseSpec {
         let height = 1.75
         
         it("doesn't save those properties to database") {
-          let person = Person(name: personName, age: personAge)
+          let person = Person(id: personID, name: personName, age: personAge)
           person.address = address
           person.height = height
           let realm = try! Realm()
@@ -106,7 +107,7 @@ class PersonSpec: BaseSpec {
     describe("CRUD operations") {
       describe("Create") {
         it("saves object to database correctly") {
-          let person = Person(name: personName, age: personAge)
+          let person = Person(id: personID, name: personName, age: personAge)
           person.save()
           let realm = try! Realm()
           let personFromDatabase = realm.objects(Person.self).last
@@ -120,7 +121,7 @@ class PersonSpec: BaseSpec {
           let realm = try! Realm()
           try! realm.write {
             for i in 0...2 {
-              let person = Person(name: "person \(i)", age: 17 + i)
+              let person = Person(id: i, name: "person \(i)", age: 17 + i)
               realm.add(person)
             }
           }
@@ -164,6 +165,35 @@ class PersonSpec: BaseSpec {
           }
         }
       }
+
+      describe("Update") {
+        let newName = "new name"
+        let newAge = 50
+        describe("update properties") {
+          it("updates properties to database correctly") {
+            let person = Person(id: personID, name: personName, age: personAge)
+            person.save()
+            person.updateName(newName, age: newAge)
+            let realm = try! Realm()
+            let personFromDatabase = realm.objects(Person.self).last
+            expect(personFromDatabase?.name) == newName
+            expect(personFromDatabase?.age) == newAge
+          }
+        }
+
+        describe("update with primary key") {
+          it("updates properties to database correctly") {
+            let person = Person(id: 1, name: personName, age: personAge)
+            person.save()
+
+            let anotherPerson = Person(id: 1, name:newName, age: newAge)
+            person.updateFrom(anotherPerson)
+            let realm = try! Realm()
+            let personFromDatabase = realm.objects(Person.self).last
+            expect(personFromDatabase?.name) == newName
+            expect(personFromDatabase?.age) == newAge
+          }
+        }
       }
     }
   }
