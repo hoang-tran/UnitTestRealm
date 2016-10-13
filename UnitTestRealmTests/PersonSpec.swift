@@ -176,16 +176,32 @@ class PersonSpec: BaseSpec {
         }
 
         describe("update with primary key") {
-          it("updates properties to database correctly") {
-            let person = Person(id: 1, name: personName, age: personAge)
-            person.save()
+          context("different id") {
+            it("does not update anything") {
+              let person = Person(id: 1, name: personName, age: personAge)
+              person.save()
 
-            let anotherPerson = Person(id: 1, name:newName, age: newAge)
-            person.updateFrom(anotherPerson)
-            let realm = try! Realm()
-            let personFromDatabase = realm.objects(Person.self).last
-            expect(personFromDatabase?.name) == newName
-            expect(personFromDatabase?.age) == newAge
+              let anotherPerson = Person(id: 2, name:newName, age: newAge)
+              person.updateFrom(anotherPerson)
+              let realm = try! Realm()
+              let personFromDatabase = realm.objects(Person.self).last
+              expect(personFromDatabase?.name) == personName
+              expect(personFromDatabase?.age) == personAge
+            }
+          }
+
+          context("same id") {
+            it("updates properties to database correctly") {
+              let person = Person(id: 1, name: personName, age: personAge)
+              person.save()
+
+              let anotherPerson = Person(id: 1, name:newName, age: newAge)
+              person.updateFrom(anotherPerson)
+              let realm = try! Realm()
+              let personFromDatabase = realm.objects(Person.self).last
+              expect(personFromDatabase?.name) == newName
+              expect(personFromDatabase?.age) == newAge
+            }
           }
         }
       }

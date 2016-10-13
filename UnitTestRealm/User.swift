@@ -75,6 +75,7 @@ extension Person {
   }
 
   func updateFrom(person: Person) {
+    guard self.id == person.id else { return }
     let realm = try! Realm()
     try! realm.write {
       realm.add(person, update: true)
